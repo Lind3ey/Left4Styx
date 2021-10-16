@@ -1,3 +1,3 @@
 *.zip
-scripting/styx_compiled
+scripting/styx_compiled/*
 
