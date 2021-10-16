@@ -1,0 +1,34 @@
+"MatchModes"
+{
+	"-> Coop"
+	{
+		"styx"
+		{
+			"name" "Xyts(VersusCoop)"
+			"min"	"1"
+			"max"	"6"
+		}
+		"styxcoop"
+		{
+	 		"name" "PoocXyts"
+			"min"	"1"
+			"max"	"4"
+		}
+		"default"
+		{
+	 		"name" "Campaign"
+			"min"	"1"
+			"max"	"4"
+		}
+	}
+	
+	"-> Others"
+	{
+		"styxsurvival"
+		{
+			"name"	"LavivrusXyts"
+			"min"	"1"
+			"max"	"4"
+		}
+	}
+}

@@ -1,0 +1,167 @@
+"Map"
+{
+	"Fatal Freight"
+	{
+		"l4d2_ff01_woods"
+		{
+			"name" "1: The Woods (VS)"
+		}
+		"l4d2_ff02_factory"		
+		{
+			"name" "2: The Factory (VS)"
+		}
+		"l4d2_ff03_highway"		
+		{
+			"name" "3: The Highway (VS)"
+		}
+		"l4d2_ff04_plant"		
+		{
+			"name" "4: The Plant (VS)"
+		}
+		"l4d2_ff05_station"		
+		{
+			"name" "5: Trainyard Finale (VS)"
+		}
+	}
+	"Warcelona"
+	{
+		"srocchurch"
+		{
+			"name" "m1 srocchurch"
+		}
+		"plaza_espana"
+		{
+			"name" "m2 plaza_espana"
+		}
+		"maria_cristina"
+		{
+			"name" "m3 maria_cristina"
+		}
+		"mnac"
+		{
+			"name" "m4 mnac"
+		}
+	}
+	"Diescraper Redux"
+	{
+		"l4d2_diescraper1_apartment_36"
+		{
+			"name" "Apartment complex"
+		}
+		"l4d2_diescraper2_streets_36"
+		{
+			"name" "Downtown military outpost"
+		}
+		"l4d2_diescraper3_mid_36"
+		{
+			"name" "The Skymall"
+		}
+		"l4d2_diescraper4_top_36"
+		{
+			"name" "The top suites"
+		}
+	}
+	"Detour Ahead"
+	{
+		"cdta_01detour"
+		{
+			"name" "m1 Detour"
+		}
+		"cdta_02road"
+		{
+			"name" "m2 Road"
+		}
+		"cdta_03warehouse"
+		{
+			"name" "m3 Warehouse"
+		}
+		"cdta_04onarail"
+		{
+			"name" "m4 Onarail"
+		}
+		"cdta_05finalroad"
+		{
+			"name" "m5 Finalroad"
+		}
+	}
+	"Blood Tracks"
+	{
+		"bloodtracks_01"
+		{
+			"name" "M1"
+		}
+		"bloodtracks_02"
+		{
+			"name" "M2"
+		}
+		"bloodtracks_03"
+		{
+			"name" "M3"
+		}
+		"bloodtracks_04"
+		{
+			"name" "M4"
+		}
+	}
+	"Open Road"
+	{
+		"x1m1_cliffs"
+		{
+			"name" "m1 cliffs"
+		}
+		"x1m2_path"
+		{	
+			"name" "m2 path"
+		}
+		"x1m3_city"
+		{
+			"name" "m3 City"
+		}
+		"x1m4_forest"
+		{	
+			"name" "m4 Forest"
+		}
+		"x1m5_salvation"
+		{
+			"name" "m5 Salvation"
+		}
+	}
+	"Urban Flight"
+	{
+		"uf1_boulevard"
+		{
+			"name" "m1 Boulevard"
+		}
+		"uf2_rooftops"
+		{
+			"name" "m2 Rooftop"
+		}
+		"uf3_harbor"
+		{
+			"name" "m3 Harbor"
+		}
+		"uf4_airfield"
+		{
+			"name" "m4 Airfield"
+		}
+	}
+	"Carried Off"
+	{
+		"cwm1_intro"
+		{
+			"name" "m1 Intro"
+		}
+		"cwm2_warehouse"
+		{
+			"name" "m2 Warehouse"
+		}
+		"cwm3_drain"
+		{
+			"name" "m3 Drain"
+		}
+		"cwm4_building"
+		{
+			"name" "m4 Building"
+		}
+	}
+}
