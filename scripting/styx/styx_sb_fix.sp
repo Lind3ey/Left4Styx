@@ -1,7 +1,7 @@
 #include <sourcemod>
 #include <sdktools>
 #include <sdkhooks>
-#include <weapons>
+#include <l4d2util_weapons>
 
 #pragma semicolon 1
 
