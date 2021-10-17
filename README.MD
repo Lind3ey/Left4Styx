@@ -39,3 +39,11 @@ A rough versus-coop module
 * playernum_mng.smx : config counts of survivors and infected.
 * styxframe.smx : framework, intergrated match vote, server namer etc.
 * others : as name
+
+<img src="./personal/image/gif_1.gif" width=350px> | <img src="./personal/image/gif_2.gif" width=400px> 
+*
+<img src="./personal/image/gif_3.gif" width=400px> | <img src="./personal/image/gif_4.gif" width=400px>
+*
+<img src="./personal/image/gif_5.gif" width=400px> | <img src="./personal/image/gif_6.gif" width=400px>
+*
+<img src="./personal/image/gif_7.gif" width=400px>
