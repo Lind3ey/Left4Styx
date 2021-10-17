@@ -40,10 +40,10 @@ A rough versus-coop module
 * styxframe.smx : framework, intergrated match vote, server namer etc.
 * others : as name
 
-<img src="./personal/images/gif_1.gif" width=706px> 
-<img src="./personal/images/gif_2.gif" width=706px> 
-<img src="./personal/images/gif_3.gif" width=706px> 
-<img src="./personal/images/gif_4.gif" width=706px>
+<img src="./personal/images/gif_7.gif" width=706px> 
 <img src="./personal/images/gif_5.gif" width=706px> 
-<img src="./personal/images/gif_6.gif" width=706px>
-<img src="./personal/images/gif_7.gif" width=706px>
+<img src="./personal/images/gif_6.gif" width=706px> 
+<img src="./personal/images/gif_4.gif" width=706px>
+<img src="./personal/images/gif_2.gif" width=706px> 
+<img src="./personal/images/gif_1.gif" width=706px>
+<img src="./personal/images/gif_3.gif" width=706px>
