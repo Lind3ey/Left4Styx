@@ -36,3 +36,17 @@ cp ./cfg    $MAIN_DIR/ -r
 echo "copying scripts to $MAIN_DIR"
 cp ./scripts  $MAIN_DIR/ -r
 echo "install complete"
+
+namefile=$MAIN_DIR/addons/sourcemod/configs/hostname.txt
+
+if [ ! -f $namefile ]; then
+	read -p "Enter short hostname: "
+	NAMESHORT=$REPLY
+	read -p "Enter long hostname : "
+	NAMELONG=$REPLY
+
+	[ ! $NAMESHORT ] && NAMESHORT="$HOSTNAME"
+	[ ! $NAMELONG ] && NAMELONG="$HOSTNAME"
+
+	echo -e "$NAMESHORT\n$NAMELONG" > $namefile
+fi
