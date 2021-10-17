@@ -216,8 +216,8 @@ stock CPrintToChatTeam(team, char[] sMsg)
 
 public OnClientDisconnect_Post(client)
 {
-        if (!bIsTankInPlay || client != g_iTankClient) return;
-        CreateTimer(0.1, Timer_CheckTank, client); // Use a delayed timer due to bugs where the tank passes to another player
+	if (!bIsTankInPlay || client != g_iTankClient) return;
+	CreateTimer(0.1, Timer_CheckTank, client); // Use a delayed timer due to bugs where the tank passes to another player
 }
      
 public Cvar_Enabled(Handle:convar, const String:oldValue[], const String:newValue[])
@@ -237,8 +237,8 @@ public Cvar_TankHealth(Handle:convar, const String:oldValue[], const String:newV
      
 CalculateTankHealth()
 {
-        g_fMaxTankHealth = GetConVarFloat(g_hCvarTankHealth) * 1.5;
-        if (g_fMaxTankHealth <= 0.0) g_fMaxTankHealth = 1.0; // No dividing by 0!
+	g_fMaxTankHealth = IsVersusMode()?GetConVarFloat(g_hCvarTankHealth)*1.5:GetConVarFloat(g_hCvarTankHealth);
+	if (g_fMaxTankHealth <= 0.0) g_fMaxTankHealth = 1.0; // No dividing by 0!
 }
      
 public Event_PlayerHurt(Handle:event, const String:name[], bool:dontBroadcast)
@@ -247,16 +247,16 @@ public Event_PlayerHurt(Handle:event, const String:name[], bool:dontBroadcast)
 	
 	new victim = GetClientOfUserId(GetEventInt(event, "userid"));
 	if (victim != GetTankClient() ||        // Victim isn't tank; no damage to record
-			IsTankDying()                                   // Something buggy happens when tank is dying with regards to damage
-									) return;
+		IsTankDying())                                   // Something buggy happens when tank is dying with regards to damage
+		return;
 	
 	new attacker = GetClientOfUserId(GetEventInt(event, "attacker"));
 	// We only care about damage dealt by survivors, though it can be funny to see
 	// claw/self inflicted hittable damage, so maybe in the future we'll do that
 	if (attacker == 0 ||                                                    // Damage from world?
-			!IsClientInGame(attacker) ||                            // Not sure if this happens
-			GetClientTeam(attacker) != TEAM_SURVIVORS
-									) return;
+		!IsClientInGame(attacker) ||                            // Not sure if this happens
+		GetClientTeam(attacker) != TEAM_SURVIVORS)
+		return;
 	
 	g_iDamage[attacker] += GetEventInt(event, "dmg_health");
 	g_iLastTankHealth = GetEventInt(event, "health");
@@ -265,49 +265,48 @@ public Event_PlayerHurt(Handle:event, const String:name[], bool:dontBroadcast)
 // When survivors wipe or juke tank, announce damage
 public Event_RoundEnd(Handle:event, const String:name[], bool:dontBroadcast)
 {
-        // But only if a tank that hasn't been killed exists
-        if (g_bAnnounceTankDamage)
-        {
-                PrintRemainingHealth();
-                PrintTankDamage();
-        }
-        // ClearTankDamage();
+	// But only if a tank that hasn't been killed exists
+	if (g_bAnnounceTankDamage)
+	{
+		PrintRemainingHealth();
+		PrintTankDamage();
+	}
+	// ClearTankDamage();
 }
      
 public Action:Timer_CheckTank(Handle:timer, any:oldtankclient)
 {
-        if (g_iTankClient != oldtankclient) return; // Tank passed
-     
-        new tankclient = FindTankClient();
-        if (tankclient && tankclient != oldtankclient)
-        {
-                g_iTankClient = tankclient;
-     
-                return; // Found tank, done
-        }
-     
-        if (g_bAnnounceTankDamage) PrintTankDamage();
-        bIsTankInPlay = false; // No tank in play
+	if (g_iTankClient != oldtankclient) return; // Tank passed
+	
+	new tankclient = FindTankClient();
+	if (tankclient && tankclient != oldtankclient)
+	{
+		g_iTankClient = tankclient;
+		return; // Found tank, done
+	}
+	
+	if (g_bAnnounceTankDamage) PrintTankDamage();
+	bIsTankInPlay = false; // No tank in play
 }
      
 bool:IsTankDying()
 {
-        new tankclient = GetTankClient();
-        if (!tankclient) return false;
-     
-        return bool:GetEntData(tankclient, g_iOffset_Incapacitated);
+	new tankclient = GetTankClient();
+	if (!tankclient) return false;
+	
+	return bool:GetEntData(tankclient, g_iOffset_Incapacitated);
 }
      
 PrintRemainingHealth()
 {
-        if (!g_bEnabled) return;
-        new tankclient = GetTankClient();
-        if (!tankclient) return;
-     
-        decl String:name[MAX_NAME_LENGTH];
-        if (IsFakeClient(tankclient)) name = "Dummy";
-        else GetClientName(tankclient, name, sizeof(name));
-        PrintToChatAll("\x01[\x04✘\x01] Tank (\x05%s\x01) had \x04%d\x01 health remaining", name, g_iLastTankHealth);
+	if (!g_bEnabled) return;
+	new tankclient = GetTankClient();
+	if (!tankclient) return;
+	
+	decl String:name[MAX_NAME_LENGTH];
+	if (IsFakeClient(tankclient)) name = "Dummy";
+	else GetClientName(tankclient, name, sizeof(name));
+	PrintToChatAll("\x01[\x04✘\x01] Tank (\x05%s\x01) had \x04%d\x01 health remaining", name, g_iLastTankHealth);
 }
      
 PrintTankDamage()
@@ -322,58 +321,55 @@ PrintTankDamage()
 
 public Action:Delay_PrintDmg(Handle timer)
 {
-        new client;
-        new percent_total; // Accumulated total of calculated percents, for fudging out numbers at the end
-        new damage_total; // Accumulated total damage dealt by survivors, to see if we need to fudge upwards to 100%
-        new survivor_index = -1;
-        new survivor_clients[g_iSurvivorLimit]; // Array to store survivor client indexes in, for the display iteration
-        decl percent_damage, damage;
-        for (client = 1; client <= MaxClients; client++)
-        {
-                if (!IsClientInGame(client) || GetClientTeam(client) != TEAM_SURVIVORS) continue;
-                survivor_index++;
-                survivor_clients[survivor_index] = client;
-                damage = g_iDamage[client];
-                damage_total += damage;
-                percent_damage = GetDamageAsPercent(damage);
-                percent_total += percent_damage;
-        }
-        SortCustom1D(survivor_clients, g_iSurvivorLimit, SortByDamageDesc);
-     
-        new percent_adjustment;
-        // Percents add up to less than 100% AND > 99.5% damage was dealt to tank
-        if ((percent_total < 100 &&
-                float(damage_total) > (g_fMaxTankHealth - (g_fMaxTankHealth / 200.0)))
-                )
-        {
-                percent_adjustment = 100 - percent_total;
-        }
-     
-        new last_percent = 100; // Used to store the last percent in iteration to make sure an adjusted percent doesn't exceed the previous percent
-        decl adjusted_percent_damage;
-        for (new i; i <= survivor_index; i++)
-        {
-                client = survivor_clients[i];
-                damage = g_iDamage[client];
-                percent_damage = GetDamageAsPercent(damage);
-                // Attempt to adjust the top damager's percent, defer adjustment to next player if it's an exact percent
-                // e.g. 3000 damage on 6k health tank shouldn't be adjusted
-                if (percent_adjustment != 0 && // Is there percent to adjust
-                        damage > 0 &&  // Is damage dealt > 0%
-                        !IsExactPercent(damage) // Percent representation is not exact, e.g. 3000 damage on 6k tank = 50%
-                        )
-                {
-                        adjusted_percent_damage = percent_damage + percent_adjustment;
-                        if (adjusted_percent_damage <= last_percent) // Make sure adjusted percent is not higher than previous percent, order must be maintained
-                        {
-                                percent_damage = adjusted_percent_damage;
-                                percent_adjustment = 0;
-                        }
-                }
-                CPrintToChatAll("{default}[{blue}%2d{olive}％{default}] {olive}%4d: {blue}%N", percent_damage, damage, client);
-        }
-		
-        ClearTankDamage();
+	new client;
+	new percent_total; // Accumulated total of calculated percents, for fudging out numbers at the end
+	new damage_total; // Accumulated total damage dealt by survivors, to see if we need to fudge upwards to 100%
+	new survivor_index = -1;
+	new survivor_clients[g_iSurvivorLimit]; // Array to store survivor client indexes in, for the display iteration
+	decl percent_damage, damage;
+	for (client = 1; client <= MaxClients; client++)
+	{
+		if (!IsClientInGame(client) || GetClientTeam(client) != TEAM_SURVIVORS) continue;
+		survivor_index++;
+		survivor_clients[survivor_index] = client;
+		damage = g_iDamage[client];
+		damage_total += damage;
+		percent_damage = GetDamageAsPercent(damage);
+		percent_total += percent_damage;
+	}
+	SortCustom1D(survivor_clients, g_iSurvivorLimit, SortByDamageDesc);
+	
+	new percent_adjustment;
+	// Percents add up to less than 100% AND > 99.5% damage was dealt to tank
+	if (percent_total < 100 &&
+		float(damage_total) > (g_fMaxTankHealth - (g_fMaxTankHealth / 200.0)))
+	{
+		percent_adjustment = 100 - percent_total;
+	}
+	
+	new last_percent = 100; // Used to store the last percent in iteration to make sure an adjusted percent doesn't exceed the previous percent
+	decl adjusted_percent_damage;
+	for (new i; i <= survivor_index; i++)
+	{
+		client = survivor_clients[i];
+		damage = g_iDamage[client];
+		percent_damage = GetDamageAsPercent(damage);
+		// Attempt to adjust the top damager's percent, defer adjustment to next player if it's an exact percent
+		// e.g. 3000 damage on 6k health tank shouldn't be adjusted
+		if (percent_adjustment != 0 && // Is there percent to adjust
+			damage > 0 &&  // Is damage dealt > 0%
+			!IsExactPercent(damage)) // Percent representation is not exact, e.g. 3000 damage on 6k tank = 50%		
+		{
+			adjusted_percent_damage = percent_damage + percent_adjustment;
+			if (adjusted_percent_damage <= last_percent) // Make sure adjusted percent is not higher than previous percent, order must be maintained
+			{
+				percent_damage = adjusted_percent_damage;
+				percent_adjustment = 0;
+			}
+		}
+		CPrintToChatAll("{default}[{blue}%2d{olive}％{default}] {olive}%4d: {blue}%N", percent_damage, damage, client);
+	}
+	ClearTankDamage();
 }
 
 ClearTankDamage()
@@ -386,36 +382,36 @@ ClearTankDamage()
      
 GetTankClient()
 {
-        if (!bIsTankInPlay) return 0;
-     
-        new tankclient = g_iTankClient;
-     
-        if (!IsClientInGame(tankclient)) // If tank somehow is no longer in the game (kicked, hence events didn't fire)
-        {
-                tankclient = FindTankClient(); // find the tank client
-                if (!tankclient) return 0;
-                g_iTankClient = tankclient;
-        }
-     
-        return tankclient;
+	if (!bIsTankInPlay) return 0;
+	
+	new tankclient = g_iTankClient;
+	
+	if (!IsClientInGame(tankclient)) // If tank somehow is no longer in the game (kicked, hence events didn't fire)
+	{
+		tankclient = FindTankClient(); // find the tank client
+		if (!tankclient) return 0;
+		g_iTankClient = tankclient;
+	}
+	
+	return tankclient;
 }
      
 GetDamageAsPercent(damage)
 {
-        return RoundToFloor(float(damage)/g_fMaxTankHealth*100.0);
+	return RoundToFloor(float(damage)/g_fMaxTankHealth*100.0);
 }
      
 bool:IsExactPercent(damage)
 {
-        return (FloatAbs(float(GetDamageAsPercent(damage)) - float(damage)/g_fMaxTankHealth*100.0) < 0.001) ? true:false;
+	return (FloatAbs(float(GetDamageAsPercent(damage)) - float(damage)/g_fMaxTankHealth*100.0) < 0.001) ? true:false;
 }
      
 public SortByDamageDesc(elem1, elem2, const array[], Handle:hndl)
 {
-        // By damage, then by client index, descending
-        if (g_iDamage[elem1] > g_iDamage[elem2]) return -1;
-        else if (g_iDamage[elem2] > g_iDamage[elem1]) return 1;
-        else if (elem1 > elem2) return -1;
-        else if (elem2 > elem1) return 1;
-        return 0;
+	// By damage, then by client index, descending
+	if (g_iDamage[elem1] > g_iDamage[elem2]) return -1;
+	else if (g_iDamage[elem2] > g_iDamage[elem1]) return 1;
+	else if (elem1 > elem2) return -1;
+	else if (elem2 > elem1) return 1;
+	return 0;
 }

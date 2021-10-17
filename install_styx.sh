@@ -1,28 +1,38 @@
 #!/bin/bash
 
-L4D2="$HOME/steam/server/left4dead2"
-PLUGINDIR="$L4D2/addons/sourcemod/plugins"
-if [ ! -d "$L4D2" ]; then
-    fail "Missing $L4D2 directory"
+if [ $MAIN_DIR ]; then
+	if [ ! -d "$MAIN_DIR" ]; then
+    echo "Missing $MAIN_DIR directory"
+	  exit 9
+	fi
+	echo "L4D2: $MAIN_DIR"
+else 
+  echo "Please setup enviroment first."
+  exit 9
 fi
 
-if [ ! -d "$PLUGINDIR" ]; then
-    mkdir -p $PLUGINDIR
+if [ $PLG_DIR ]; then
+	if [ ! -d "$PLG_DIR" ]; then
+  	echo mkdir:$PLG_DIR
+  	mkdir -p $PLG_DIR
+	fi
+else
+	echo "Please setup enviriment first."
+	exit 8
 fi
-echo "L4D2: $L4D2"
 
-cd scripting
+cd scripting/
 echo "compiling plugins..."
 make
 echo "moving plugins..."
-mkdir -p $PLUGINDIR/optional/styx
-mv styx_compiled/* $PLUGINDIR/optional/styx/
+mkdir -p $PLG_DIR/optional/styx
+mv styx_compiled/* $PLG_DIR/optional/styx/
 cd ..
 
-echo "copying addons to $L4D2"
-cp ./addons $L4D2/ -r
-echo "copying cfg to $L4D2"
-cp ./cfg    $L4D2/ -r
-echo "copying scripts to $L4D2"
-cp ./scripts  $L4D2/ -r
+echo "copying addons to $MAIN_DIR"
+cp ./addons $MAIN_DIR/ -r
+echo "copying cfg to $MAIN_DIR"
+cp ./cfg    $MAIN_DIR/ -r
+echo "copying scripts to $MAIN_DIR"
+cp ./scripts  $MAIN_DIR/ -r
 echo "install complete"

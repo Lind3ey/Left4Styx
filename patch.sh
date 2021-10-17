@@ -1,44 +1,52 @@
 #!/bin/bash
-MAIN_DIR="$HOME/steam/server/left4dead2"
-MOD_ROOT="$(dirname $(readlink -f "${BASH_SOURCE[0]}"))"
+if [ $MAIN_DIR ]; then
+  echo $MAIN_DIR
+else
+  echo "Setup env first."
+  exit 1
+fi
 
-echo $MAIN_DIR
-cd $MAIN_DIR || fail "Missing $MAIN_DIR directory!"
+cd $MAIN_DIR || exit "Missing $MAIN_DIR directory!"
+
+echo check temp files...
 rm -f styxupdate.zip
-rm -rf temp            
-echo "Making dir..."
+rm -rf temp
 
-mkdir temp
-mkdir temp/addons
-mkdir temp/addons/sourcemod
-mkdir temp/cfg
-mkdir temp/scripts
+echo "Making dir..."
+mkdir temp -p
+mkdir temp/addons -p
+mkdir temp/addons/sourcemod -p
+mkdir temp/cfg -p
+mkdir temp/scripts -p
+
 echo "copying addons/..."
 cp addons/styxaddon.vpk temp/addons/
 cp -r addons/sourcemod/plugins temp/addons/sourcemod/
 cp -r addons/sourcemod/configs temp/addons/sourcemod/
 cp -r addons/sourcemod/gamedata temp/addons/sourcemod/
+
+echo remove excess files...
 rm -rf temp/addons/sourcemod/configs/geoip
 rm -f temp/addons/sourcemod/configs/hostname.txt
+
 echo "copying cfg/..."
 cp -r cfg/cfgogl temp/cfg/
-## cp -r cfg/stripper temp/cfg
-## cp -r cfg/sourcemod temp/cfg/
-## cp -r cfg/cfgs	temp/cfg/
 cp cfg/server.cfg temp/cfg/
+
 echo "copying vscripts..."
-cp -r scripts/vscripts temp/scripts/
+cp -r scripts/vscripts/*styx* temp/scripts/
+
 echo "copying others..."
 cp motd.* temp/
 
 cd temp/
 echo "Zipping all files..."
-zip -qur ../styxupdate.zip ./*
+zip -qury ../styxupdate.zip ./*
 
 cd ../
 echo "Remove temp files."
 rm -rf temp
 
-cd $MOD_ROOT
+cd $STYX_DIR
 
 mv $MAIN_DIR/styxupdate.zip ./

@@ -198,13 +198,11 @@ public Action OnPunchHurt(Handle:event, const String:name[], bool:dontBroadcast)
 	new damage = GetEventInt(event, "dmg_health");
 	if ( damage < 1 )  return; 
 	
-	if(GetClientHealth(victim < 2)){
+	if(GetClientHealth(victim) < 2) {
 		delayStart(attacker, 0);
-		PrintToServer("debug health < 2, delay start");
 	}
 	if(IsIncapacitated(victim)) {
 		delayStart(attacker, 0);
-		PrintToServer("debug IsIncapacitated , delay start");
 	}
 }
 

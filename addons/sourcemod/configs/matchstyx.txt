@@ -1,0 +1,26 @@
+"MatchModes"
+{
+	"-> Coop"
+	{
+		"styx"
+		{
+			"name" "Styx"
+		}
+		"styxcoop"
+		{
+	 		"name" "StyxCoop"
+		}
+		"default"
+		{
+	 		"name" "Campaign"
+		}
+	}
+	
+	"-> Others"
+	{
+		"styxsurvival"
+		{
+			"name"	"Styx Survival"
+		}
+	}
+}

@@ -6,7 +6,7 @@
 #define __matchvote__
 
 #define		NOMATCH_SLOTS		4
-#define	 	MATCHMODES_PATH		"configs/matchmodes.txt"
+#define	 	MATCHMODES_PATH		"configs/matchstyx.txt"
 
 static Handle:		hBuiltinvote;
 static Handle:		hKvMatchModes;
@@ -18,7 +18,8 @@ public MV_OnPluginStart()
 {
 	if(InitiateMatchModes())
 	{
-		RegConsoleCmd("sm_match", 				MatchRequest);
+		RegConsoleCmd("sm_matchstyx", 			MatchRequest);
+		RegConsoleCmd("sm_styx", 				MatchRequest);
 		RegConsoleCmd("sm_rmatch", 				MatchReset);
 	}
 	else
@@ -216,51 +217,6 @@ bool:PreStartVote(client, const String:cfg[], const String:cfgname[])
 		PrintToChat(client, "\x01Say \x04!rmatch \x01to vote turning off current match.");
 		return false;
 	}
-	/*
-	if(FindConfigPlayerLimit(cfg, min, max))
-	{
-		cur = GetHumanCount();
-		decl String:sBuffer[128];
-		if(cur < min)
-		{
-			wpanel = CreatePanel();
-			SetPanelTitle(wpanel, cfgname);
-			Format(sBuffer, sizeof(sBuffer), "This config may be hard when less than %d players,", min);
-			DrawPanelText(wpanel, sBuffer);
-			DrawPanelText(wpanel, "(if versus, game won't start if no enough players.)");
-			DrawPanelText(wpanel, "sure to start a vote for it?");
-			DrawPanelText(wpanel, ": 建议游戏时长: 不少于500小时");
-			DrawPanelText(wpanel, " \n"); // empty line to separate sections
-			DrawPanelItem(wpanel, " Yes, I'm sure.");
-			DrawPanelItem(wpanel, " No, I'll choose others.");
-			
-			SendPanelToClient(wpanel, client, PreMenuHandler, 40);
-			return true;
-		}
-		else if(cur > max)
-		{
-			wpanel = CreatePanel();
-			SetPanelTitle(wpanel, cfgname);
-			Format(sBuffer, sizeof(sBuffer), "Only %d of you can join game in this config,", max);
-			DrawPanelText(wpanel, sBuffer);
-			DrawPanelText(wpanel, "sure to start a vote for it?");
-			DrawPanelText(wpanel, " \n"); // empty line to separate sections
-			DrawPanelItem(wpanel, "1. Yes, I'm sure.");
-			DrawPanelItem(wpanel, "2. No, I'll choose others.");
-			
-			SendPanelToClient(wpanel, client, PreMenuHandler, 40);
-			return true;
-		}
-		else
-		{
-			if(StartMatchVote(client, cfgname))
-			{
-				FakeClientCommand(client, "Vote Yes");
-				return true;
-			}
-		}
-	}
-	*/
 	if(StartMatchVote(client, cfgname))
 	{
 		FakeClientCommand(client, "Vote Yes");
@@ -269,35 +225,10 @@ bool:PreStartVote(client, const String:cfg[], const String:cfgname[])
 	PrintHintText(client, "Sorry, find error.");
 	return false;
 }
-/*
-public PreMenuHandler(Handle:menu, MenuAction:action, param1, param2) 
-{
-	if(action == MenuAction_Select)
-	{
-		if(param2 == 1)
-		{
-			if(StartMatchVote(param1, temp_sCfgName))
-			{
-				FakeClientCommand(param1, "Vote Yes");
-				return;
-			}
-		}
-		CloseHandle(menu);
-		MatchModeMenu(param1);
-	}
-	if (action == MenuAction_End)
-	{
-		CloseHandle(menu);
-	}
-	if (action == MenuAction_Cancel)
-	{
-		MatchModeMenu(param1);
-	}
-}*/
 
 bool:StartMatchVote(client, const String:cfgname[])
 {
-	if (IsNewBuiltinVoteAllowed())
+	if (!IsBuiltinVoteInProgress())
 	{
 		new String:sBuffer[64];
 		hBuiltinvote = CreateBuiltinVote(VoteActionHandler, BuiltinVoteType_Custom_YesNo, BuiltinVoteAction_Cancel | BuiltinVoteAction_VoteEnd | BuiltinVoteAction_End);
@@ -351,7 +282,7 @@ StartResetMatchVote(client)
 		PrintHintText(client, "Resetmatch vote cannot be started.\n No match is running.");
 		return;
 	}
-	if (IsNewBuiltinVoteAllowed())
+	if (!IsBuiltinVoteInProgress())
 	{
 		new iNumPlayers;
 		decl iPlayers[MaxClients];
