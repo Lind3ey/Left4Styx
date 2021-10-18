@@ -13,8 +13,10 @@ cp $L4D2CR/addons  $MAIN_DIR/ -r
 cp $L4D2CR/cfg     $MAIN_DIR/ -r
 cp $L4D2CR/scripts $MAIN_DIR/ -r
 echo -e "\033[31mFollowing files will be deleted.\033[0m"
+echo $PLG_DIR/../scripting
 ls $PLG_DIR/*fun*
 rm $PLG_DIR/*fun*
+rm $PLG_DIR/../scripting -r
 
 source ./install_styx.sh
 

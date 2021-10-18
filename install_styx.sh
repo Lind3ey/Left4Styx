@@ -5,7 +5,6 @@ if [ $MAIN_DIR ]; then
     echo "Missing $MAIN_DIR directory"
 	  exit 9
 	fi
-	echo "L4D2: $MAIN_DIR"
 else 
   echo "Please setup enviroment first."
   exit 9
