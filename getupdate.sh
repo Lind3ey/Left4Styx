@@ -1,5 +1,7 @@
 #!/bin/bash
-UPDATE=./Dev/xyts-2d4l/styxupdate.zip
+## the patch address at your coding server, begin at $HOME
+UPDATE=./dev/left4styx/styxupdate.zip
+## the left4dead2 folder in your running server.
 L4D2_DIR=$HOME/steam/l4d2/left4dead2
 
 if [ ! -d $L4D2_DIR ]; then

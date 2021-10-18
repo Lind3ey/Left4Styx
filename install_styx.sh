@@ -21,10 +21,10 @@ else
 	exit 8
 fi
 
-cd scripting/
-echo "compiling plugins..."
+cd coding/
+echo -e "\033[32m Compiling plugins...\033[0m"
 make
-echo "moving plugins..."
+echo -e "\033[32m moving plugins..."
 mkdir -p $PLG_DIR/optional/styx
 mv styx_compiled/* $PLG_DIR/optional/styx/
 cd ..
@@ -35,7 +35,7 @@ echo "copying cfg to $MAIN_DIR"
 cp ./cfg    $MAIN_DIR/ -r
 echo "copying scripts to $MAIN_DIR"
 cp ./scripts  $MAIN_DIR/ -r
-echo "install complete"
+echo -e "install complete\033[0m"
 
 namefile=$MAIN_DIR/addons/sourcemod/configs/hostname.txt
 

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>Left4Styx</title> 
+<style>
+body 
+{
+	background-image:url('images/motd.png');
+	background-color:#E6E6FA;
+}
+</style>
+</head>
+
+<body>
+<h1><strong>Are you sure not joining a wrong server?</strong></h1>
+
+<p>** Github: <a href="https://github.com/Lind3ey/Left4Styx">https://github.com/Lind3ey/Left4Styx</a></p>
+
+<h2><strong>Introduction</strong></h2>
+
+<ul><li>!styx/!matchstyx : show Styx config menu</li></ul>

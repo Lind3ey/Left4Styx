@@ -1,25 +1,25 @@
 #!bin/bash
 
+## set up your gamefile path.
+export MAIN_DIR="$HOME/steam/l4d2/left4dead2"
+echo "MAIN_DIR: $MAIN_DIR"
+if [ ! -d $MAIN_DIR ]; then
+  echo -e "\033[34m WARNING: Missing left4dead2 directory!"
+fi
+
 export STYX_DIR="$(dirname $(readlink -f "${BASH_SOURCE[0]}"))"
 echo STYX_DIR: $STYX_DIR
 
-## set up your copy path.
-export LCR="$HOME/Dev/L4D2-Competitive-Rework"
-echo L4D2-Competitive-Rework: $LCR
+export L4D2CR="$STYX_DIR/l4d2-competitive-rework"
+echo L4D2-Competitive-Rework: $L4D2CR
 
-if [ ! -d $LCR ]; then
+if [ ! -d $L4D2CR ]; then
   echo "WARNING: Mising L4D2-Competitive-Rework directory!"
-fi
-
-export MAIN_DIR="$HOME/steam/server/left4dead2"
-echo "MAIN_DIR: $MAIN_DIR"
-if [ ! -d $MAIN_DIR ]; then
-  echo "WARNING: Missing left4dead2 directory!"
 fi
 
 export PLG_DIR="$MAIN_DIR/addons/sourcemod/plugins"
 
-export SM_DIR="$LCR/addons/sourcemod/scripting"
+export SM_DIR="$L4D2CR/addons/sourcemod/scripting"
 
 if [ ! -x $SM_DIR/spcomp ]; then
   echo  "WARNING: Missing sourcemod compiler."
