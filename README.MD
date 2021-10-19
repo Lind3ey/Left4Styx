@@ -19,6 +19,22 @@ A rough versus-coop module
 * Styx survival(styxsurvival): a survival mode, idea from Killing Floor.
 * styxcoop (incomplete): for those maps not support versus mode.
 
+## **Install**
+#### **full install**
+-- git clone --recursive https://github.com/Lind3ey/Left4Styx.git left4styx
+-- cd left4styx
+-- vim setup_env.sh ##set your left4dead2 folder to.
+-- cd custom 
+-- ## Make your custom setting. admin, group etc.
+-- cd ..
+-- source full_install.sh 
+-- ##Waiting the progress and Enter your cool host name.
+-- install complete.
+#### **update**
+-- cd left4styx 
+-- git pull
+-- source full_install.sh
+
 ## **Files**
 ### **shell**
 * setup_env.sh : script to config your left4dead2 dir and spcomp(compiler) dir.
