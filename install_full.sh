@@ -19,7 +19,3 @@ rm $PLG_DIR/*fun*
 rm $PLG_DIR/../scripting -r
 
 source ./install_styx.sh
-
-if [ -d ./custom ]; then
-  cp ./custom/* -r $MAIN_DIR/
-fi 

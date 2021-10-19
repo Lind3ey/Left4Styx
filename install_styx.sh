@@ -36,6 +36,10 @@ echo "copying scripts to $MAIN_DIR"
 cp ./scripts  $MAIN_DIR/ -r
 echo -e "install complete\033[0m"
 
+if [ -d ./custom ]; then
+  cp ./custom/* -r $MAIN_DIR/
+fi 
+
 namefile=$MAIN_DIR/addons/sourcemod/configs/hostname.txt
 
 if [ ! -f $namefile ]; then
