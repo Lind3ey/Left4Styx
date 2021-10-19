@@ -60,8 +60,8 @@ A rough versus-coop module
 * others : as name
 
 <img src="./images/gif_7.gif" width=706px> 
-<img src="./images/gif_5.gif" width=706px> 
-<img src="./images/gif_6.gif" width=706px> 
+<img src="./images/gif8.gif" width=706px> 
+<img src="./images/gif10.gif" width=706px> 
 <img src="./images/gif_4.gif" width=706px>
 <img src="./images/gif_2.gif" width=706px> 
 <img src="./images/gif_1.gif" width=706px>
