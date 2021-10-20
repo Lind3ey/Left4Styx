@@ -5,7 +5,7 @@ if [ $L4D2CR ] && [ $MAIN_DIR ] && [ -d $L4D2CR ] && [ -d $MAIN_DIR ]; then
     echo -e "$b L4D2 Competitive Rework: $o$L4D2CR"
     echo -e "$b Left 4 Dead 2 : $o$MAIN_DIR"
 else
-    echo -e "$b Error:missing env setup.$o"
+    echo -e "$r ERROR : missing env setup.$o"
     return 1 || exit 1
 fi
 echo -e "$b Copying L4d2-competitive-rework files.$o"

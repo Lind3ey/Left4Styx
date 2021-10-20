@@ -21,9 +21,10 @@ A rough versus-coop module
 
 ## **Install**
 #### **environment**
-* apt install libc6:i386 lib32z1 libstdc++6 lib32stdc++6 libcurl4-openssl-dev  
-* apt install make git
-
+```
+ apt install libc6:i386 lib32z1 libstdc++6 lib32stdc++6 libcurl4-openssl-dev  
+ apt install make git
+```
 #### **full install**
 ```
  git clone --recursive https://github.com/Lind3ey/Left4Styx.git left4styx
@@ -47,7 +48,7 @@ A rough versus-coop module
 * setup_env.sh : script to config your left4dead2 dir and spcomp(compiler) dir.
 * install_styx.sh : script to compile and install styx.
 * install_full.sh : Install l4d2-competitive-rework and styx.
-* coding/Makefile : makefile to compile all .sp.
+* coding/Makefile : Makefile to compile all .sp.
 ### **smx/sp**
 * l4d2_zedtime.smx : Zed time for skillful kills.
 * styx_cmds_coop.smx : Versus coop cmds.
