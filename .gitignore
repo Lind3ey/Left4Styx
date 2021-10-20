@@ -1,4 +1,4 @@
 *.zip
 custom
-coding/styx_compiled/*
+coding/compiled/*
 

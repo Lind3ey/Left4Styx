@@ -177,13 +177,13 @@ stock void SetTimeScale(float scale, float duration = -0.0, int client = -1)
 	if(duration > 0.0){
 		CreateTimer(duration, ResetTimeScale, i_Ent, TIMER_FLAG_NO_MAPCHANGE);
 
-		
-		Handle pack = CreateDataPack();
-		WritePackCell( pack, client );
-		WritePackFloat( pack, 1.00/scale);
-		CreateTimer(0.016, delaySetClientSpeed, pack, TIMER_FLAG_NO_MAPCHANGE);
-		if (client > 0 && IsValidPlayer(client))
+		if (client > 0 && IsValidPlayer(client)) {
+			Handle pack = CreateDataPack();
+			WritePackCell( pack, client );
+			WritePackFloat( pack, 1.00/scale);
+			CreateTimer(0.024, delaySetClientSpeed, pack, TIMER_FLAG_NO_MAPCHANGE);
 			CreateTimer(duration, resetClientSpeed, client, TIMER_FLAG_NO_MAPCHANGE );
+		}
 	}
 }
 

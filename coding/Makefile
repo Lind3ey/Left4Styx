@@ -1,16 +1,15 @@
 
 ## setup your own spcomp path.
 SPC = spcomp
-INCLUDE1 = -i./styx/include
-INCLUDE2 = -i./styx
+INCLUDE = -i./styx -i./styx/include
 
 src = $(wildcard ./styx/*.sp) 
-obj = $(patsubst ./styx/%.sp, ./styx_compiled/%.smx, $(src))
+obj = $(patsubst ./styx/%.sp, ./compiled/%.smx, $(src))
 SRC_DIR = ./styx
-OBJ_DIR = ./styx_compiled
+OBJ_DIR = ./compiled
 
 $(OBJ_DIR)/%.smx: $(SRC_DIR)/%.sp
-	$(SPC) $< -o $@ -O2 $(INCLUDE1) $(INCLUDE2) -v0
+	$(SPC) $< -o $@ -O2 -v0 $(INCLUDE)
 
 all:$(obj)
 

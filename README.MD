@@ -20,6 +20,10 @@ A rough versus-coop module
 * styxcoop (incomplete): for those maps not support versus mode.
 
 ## **Install**
+#### **environment**
+* apt install libc6:i386 lib32z1 libstdc++6 lib32stdc++6 libcurl4-openssl-dev  
+* apt install make git
+
 #### **full install**
 ```
  git clone --recursive https://github.com/Lind3ey/Left4Styx.git left4styx
@@ -29,8 +33,8 @@ A rough versus-coop module
  ## Make your custom setting. admin, group etc.
  cd ..
  source full_install.sh 
- ##Waiting the progress and Enter your cool host name.
- ##install complete.
+ ## Waiting the progress and Enter your cool host name.
+ ## install complete.
 ```
 #### **update**
 ```
@@ -42,12 +46,9 @@ A rough versus-coop module
 ### **shell**
 * setup_env.sh : script to config your left4dead2 dir and spcomp(compiler) dir.
 * install_styx.sh : script to compile and install styx.
-* patch.sh : script to patch a update pack.
-* full_install.sh : Install l4d2-competitive-rework and styx.
-* getupdate.sh : script to get update from coding server.
+* install_full.sh : Install l4d2-competitive-rework and styx.
 * coding/Makefile : makefile to compile all .sp.
 ### **smx/sp**
-* coopcommands.smx : Cmds for campaign based mode.
 * l4d2_zedtime.smx : Zed time for skillful kills.
 * styx_cmds_coop.smx : Versus coop cmds.
 * styx_director_during_tank : as name.
@@ -57,15 +58,16 @@ A rough versus-coop module
 * single_core.smx : should be called styx core.
 * playernum_mng.smx : config counts of survivors and infected.
 * styxframe.smx : framework, intergrated match vote, server namer etc.
+* coopcommands.smx : Cmds for campaign based mode.
 * others : as name
 
-<img src="./images/gif_7.gif" width=706px> 
-<img src="./images/gif8.gif" width=706px> 
-<img src="./images/gif10.gif" width=706px> 
-<img src="./images/gif_4.gif" width=706px>
-<img src="./images/gif_2.gif" width=706px> 
-<img src="./images/gif_1.gif" width=706px>
-<img src="./images/gif_3.gif" width=706px>
+<img src="./images/gif_7.gif" width=720px> 
+<img src="./images/gif8.gif" width=720px> 
+<img src="./images/gif10.gif" width=720px> 
+<img src="./images/gif_4.gif" width=720px>
+<img src="./images/gif_2.gif" width=720px> 
+<img src="./images/gif_1.gif" width=720px>
+<img src="./images/gif_3.gif" width=720px>
 
 # **Are you sure not joining a wrong server?**
 ** Github: [https://github.com/Lind3ey/Left4Styx](https://github.com/Lind3ey/Left4Styx)

@@ -1,31 +1,26 @@
 #!/bin/bash
 
-if [ $MAIN_DIR ]; then
-	if [ ! -d "$MAIN_DIR" ]; then
-    echo "Missing $MAIN_DIR directory"
-	  exit 9
-	fi
-else 
-  echo "Please setup enviroment first."
-  exit 9
+if [ ! $MAIN_DIR ] || [ ! -d "$MAIN_DIR" ]; then
+    echo -e "$r Missing $MAIN_DIR directory$o"
+	return 1 || exit 1
 fi
 
 if [ $PLG_DIR ]; then
 	if [ ! -d "$PLG_DIR" ]; then
-  	echo mkdir:$PLG_DIR
+  	echo -e "$y Making dir $PLG_DIR $o"
   	mkdir -p $PLG_DIR
 	fi
 else
-	echo "Please setup enviriment first."
-	exit 8
+	echo -e "$r Please setup enviriment first.$o"
+	return 8 || exit 8
 fi
 
 cd coding/
-echo -e "\033[32m Compiling plugins...\033[0m"
+echo -e "$b Compiling plugins...$o"
 make
-echo -e "\033[32m moving plugins..."
+echo -e "$b moving plugins...$o"
 mkdir -p $PLG_DIR/optional/styx
-mv styx_compiled/* $PLG_DIR/optional/styx/
+mv compiled/* $PLG_DIR/optional/styx/
 cd ..
 
 echo "copying addons to $MAIN_DIR"
@@ -34,7 +29,7 @@ echo "copying cfg to $MAIN_DIR"
 cp ./cfg    $MAIN_DIR/ -r
 echo "copying scripts to $MAIN_DIR"
 cp ./scripts  $MAIN_DIR/ -r
-echo -e "install complete\033[0m"
+echo -e "$y Install complete$o"
 
 if [ -d ./custom ]; then
   cp ./custom/* -r $MAIN_DIR/
