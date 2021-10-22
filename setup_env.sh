@@ -1,12 +1,17 @@
 #!/bin/bash
+## set up your gamefile path.
+export MAIN_DIR="$HOME/steam/l4d2/left4dead2"
+
+#### color vars. ##############################
 export r='\033[31m' 
 export g='\033[32m' 
 export y='\033[33m'
 export b='\033[34m'
 export p='\033[35m'
 export o='\033[0m' 
-## set up your gamefile path.
-export MAIN_DIR="$HOME/steam/l4d2/left4dead2"
+###############################################
+
+## VARS YOU DON'T NEED TO TOUCH.
 echo -e "${b}MAIN_DIR $g $MAIN_DIR$o"
 if [ ! -d $MAIN_DIR ]; then
   echo -e "$y WARNING: Missing left4dead2 directory!$o"

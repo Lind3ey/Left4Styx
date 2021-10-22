@@ -1,9 +1,9 @@
-# **L4D2 Styx**
+# **Left 4 Styx**
 
 
 ## **About:**
 
-A rough versus-coop module
+A rough Left 4 Dead 2 versus-coop module.
 
 ## **Important Notes**
 * NOTHING IMPORTANT, I HANDLED IT.
