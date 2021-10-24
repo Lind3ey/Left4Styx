@@ -41,8 +41,11 @@ int iWaveSpawnLeft 			= 0,
 	iTimeNextwave			= 20,
 	// imobilisedChecking		= SLAY_COUNTDOWN,
 	iTankWave[2];
+
 static Handle hTimerHeal;
 static Address pZombieManager = Address_Null;
+static ConVar mp_gamemode;
+
 char hostfile[16] = "xyts";
 static const char MapList[17][] = {
 	"c1m4_atrium",
@@ -104,7 +107,7 @@ public void OnPluginStart()
 	HookEvent("tank_spawn", 			OnTank_Spawn,		EventHookMode_Post);
 	HookEvent("player_spawn",			OnSpawn,			EventHookMode_Post);
 	HookEvent("weapon_reload",			OnReload,			EventHookMode_Post);
-	// HookEvent("player_team",			OnPlayerTeam,		EventHookMode_Post);
+	HookEvent("player_team",			OnPlayerTeam,		EventHookMode_Post);
 	
 	//Sound Hook
 	AddNormalSoundHook(view_as<NormalSHook>(SoundHook));
@@ -112,6 +115,8 @@ public void OnPluginStart()
 	RegConsoleCmd("sm_cur", 		CurCmd);
 	RegAdminCmd("sm_mark",          Cmd_MarkAsInfected, 	ADMFLAG_GENERIC);
 	// RegAdminCmd("sm_glow", GlowCmd, ADMFLAG_ROOT);
+
+	mp_gamemode = FindConVar("mp_gamemode");
 }
 
 public void OnMapStart()
@@ -167,32 +172,16 @@ public Action Cmd_MarkAsInfected(int client,int args)
 	return Plugin_Handled;
 }
 
-/*
-public Action:GlowCmd(clientc,args)
-{
-	decl String: sType[4];
-	GetCmdArg(1, sType, sizeof(sType));
-	new iType = StringToInt(sType);
-	
-	FORALL(client)
-	{
-		if (IsClientInGame(client) 
-			&& GetClientTeam(client) == TEAM_INFECTED
-			&& IsPlayerAlive(client)){
-			SetEntProp(client, Prop_Send, "m_iGlowType", iType);
-			SetEntProp(client, Prop_Send, "m_glowColorOverride", 0xFF0000);
-			}
-	}
-	return Plugin_Handled;
-}
-*/
-/*
+
 public Action OnPlayerTeam(Handle event, char[] name, bool dontBroadcast)
 {
 	int client = GetClientOfUserId(GetEventInt(event, "userid"));
 	if(client < 1 || client > MaxClients || !IsClientInGame(client) || IsFakeClient(client)) return Plugin_Handled;
+
+	if(mp_gamemode != INVALID_HANDLE)
+		SendConVarValue(client, mp_gamemode, "coop");
 	return Plugin_Handled;
-}*/
+}
 
 public Action RoundStart(Handle event, const char[] name, bool dontBroadcast)
 {
