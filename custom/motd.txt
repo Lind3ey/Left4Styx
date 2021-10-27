@@ -1,27 +1,28 @@
 <!DOCTYPE html>
-<html><head><style>body {
-<h1 id="-are-you-sure-not-joining-a-wrong-server-"><strong>Are you sure not joining a wrong server?</strong></h1>
-<p>** Github: <a href="https://github.com/Lind3ey/Left4Styx">https://github.com/Lind3ey/Left4Styx</a></p>
-<h2 id="-introduction-"><strong>Introduction</strong></h2>
-<ul>
-<li>!styx/!matchstyx : show Styx config menu<h4 id="-styx-styxcoop-"><strong>styx/styxcoop</strong></h4>
-</li>
-<li>!vs/!versus : config m vs n by !vs m n</li>
-<li>!ht/!hunter : as !vs but only hunters.</li>
-<li>!zed : toggle zed time</li>
-<li>!bot : warp survivor bots to you.</li>
-</ul>
+<html>
+<head>
+    <style type="text/css">
+        h1 {font-size: 300%; font-family:"Segoe Script"}
+        h3 {font-size: 200%; font-family:"Segoe UI"}
+        h4 {font-size: 150%; font-family:"Segoe UI"}
+        li {font-size: 150%; font-family:"Source Code Pro", "Consolas"}
+        p {font-size: 150%; ; font-family:"Segoe UI"}
+    </style>
+</head>
 
-}
-</style></head><body><h1 id="-are-you-sure-not-joining-a-wrong-server-"><strong>Are you sure not joining a wrong server?</strong></h1>
-<p>** Github: <a href="https://github.com/Lind3ey/Left4Styx">https://github.com/Lind3ey/Left4Styx</a></p>
-<h2 id="-introduction-"><strong>Introduction</strong></h2>
-<ul>
-<li>!styx/!matchstyx : show Styx config menu<h4 id="-styx-styxcoop-"><strong>styx/styxcoop</strong></h4>
-</li>
-<li>!vs/!versus : config m vs n by !vs m n</li>
-<li>!ht/!hunter : as !vs but only hunters.</li>
-<li>!zed : toggle zed time</li>
-<li>!bot : warp survivor bots to you.</li>
-</ul>
-</body></html>
+<body>
+    <h1 id="-are-you-sure-not-joining-a-wrong-server-"><strong>Are you sure not joining a wrong server?</strong></h1>
+    <p> Github: <a href="https://github.com/Lind3ey/Left4Styx">https://github.com/Lind3ey/Left4Styx</a></p>
+    <h2 id="-introduction-"><strong>Introduction</strong></h2>
+    <ul>
+        <li>!styx/!matchstyx : show Styx config menu</li>
+    </ul>
+    <h4 id="-styx-styxcoop-">styx/styxcoop</h4>
+    <ul>
+        <li>!vs/!versus : config m vs n by !vs m n</li>
+        <li>!ht/!hunter : as !vs but only hunters.</li>
+        <li>!zed : toggle zed time</li>
+        <li>!bot : warp survivor bots to you.</li>
+    </ul>
+</body>
+</html>
