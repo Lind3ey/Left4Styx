@@ -6,7 +6,8 @@
 #define __matchvote__
 
 #define		NOMATCH_SLOTS		4
-#define	 	MATCHMODES_PATH		"configs/matchstyx.txt"
+#define		MATCHMODES_PATH		"configs/matchmodes.txt"
+#define	 	STYXMODES_PATH		"configs/matchstyx.txt"
 
 static Handle:		hBuiltinvote;
 static Handle:		hKvMatchModes;
@@ -21,6 +22,7 @@ public MV_OnPluginStart()
 		RegConsoleCmd("sm_matchstyx", 			MatchRequest);
 		RegConsoleCmd("sm_styx", 				MatchRequest);
 		RegConsoleCmd("sm_rmatch", 				MatchReset);
+		RegConsoleCmd("sm_match", 				MatchRequest);
 	}
 	else
 	{
@@ -37,14 +39,25 @@ public MV_OnPluginStart()
 public bool:InitiateMatchModes()
 {
 	decl String:sBuffer[128];
+	bool file = false;
 	hKvMatchModes = CreateKeyValues("MatchModes");
+	BuildPath(Path_SM, sBuffer, sizeof(sBuffer), STYXMODES_PATH);
+	if (!FileToKeyValues(hKvMatchModes, sBuffer))
+	{
+		PrintToServer("Couldn't load %s!", STYXMODES_PATH);
+	} else
+	{
+		file = true;
+	}
 	BuildPath(Path_SM, sBuffer, sizeof(sBuffer), MATCHMODES_PATH);
 	if (!FileToKeyValues(hKvMatchModes, sBuffer))
 	{
-		PrintToServer("Couldn't load matchmodes.txt!");
-		return false;
+		PrintToServer("Couldn't load %s!", MATCHMODES_PATH);
+	} else
+	{
+		file = true;
 	}
-	return true;
+	return file;
 }
 
 public MV_OnPluginEnd()

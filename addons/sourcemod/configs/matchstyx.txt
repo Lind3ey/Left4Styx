@@ -1,6 +1,6 @@
 "MatchModes"
 {
-	"-> Coop"
+	"Styx"
 	{
 		"styx"
 		{
@@ -14,10 +14,6 @@
 		{
 	 		"name" "Campaign"
 		}
-	}
-	
-	"-> Others"
-	{
 		"styxsurvival"
 		{
 			"name"	"Styx Survival"
