@@ -1,18 +1,14 @@
 "MatchModes"
 {
-	"Styx"
+	"Styx Configs"
 	{
 		"styx"
 		{
-			"name" "Styx"
+			"name" "Styx beta"
 		}
 		"styxcoop"
 		{
 	 		"name" "StyxCoop"
-		}
-		"default"
-		{
-	 		"name" "Campaign"
 		}
 		"styxsurvival"
 		{
